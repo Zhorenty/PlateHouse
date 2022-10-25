@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown,
+      backgroundColor: Colors.brown.shade500,
       body: Stack(
         children: [
           CustomScrollView(
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ]),
                             Container(
-                              width: 350,
+                              width: 330,
                               height: 73,
                               child: Text(
                                 'ул. Академика Трубилина, 56  г.Краснодар',
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              gridaFood()
+              gridFood()
             ],
           ),
         ],
@@ -93,51 +93,44 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-Widget gridaFood() {
+Widget gridFood() {
   return SliverGrid(
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 2,
+      crossAxisCount: 1,
       mainAxisSpacing: 8,
       crossAxisSpacing: 8,
       mainAxisExtent: 220,
     ),
     delegate: SliverChildListDelegate([
       Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.network(
+              'https://eda.yandex.ru/images/3521394/fe9c612b5c1c1b585c76fb4291a25cd3-680x500.jpeg',
+              fit: BoxFit.fitWidth,
+            )),
+      ),
+      Card(
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           child: const ListTile()),
-      Container(
-        color: Colors.amber,
-      ),
-      Container(
-        color: Colors.amber,
-      ),
-      Container(
-        color: Colors.amber,
-      ),
-      Container(
-        color: Colors.amber,
-      ),
-      Container(
-        color: Colors.amber,
-      ),
+      Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          child: const ListTile()),
+      Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          child: const ListTile()),
+      Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          child: const ListTile()),
+      Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          child: const ListTile()),
     ]),
   );
 }
-
-// Widget gridFood() {
-//   return GridView.builder(
-//     padding: const EdgeInsets.all(16),
-//     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//       crossAxisCount: 2,
-//       mainAxisSpacing: 8,
-//       crossAxisSpacing: 8,
-//       mainAxisExtent: 235,
-//     ),
-//     itemCount: dummyFoods.length,
-//     itemBuilder: (context, index) {
-//       Food food = dummyFoods[index];
-//       return GestureDetector();
-//     },
-//   );
-// }
