@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:metanit/cart.dart';
 import 'models/foodModels.dart';
 
 void main() {
   runApp(MaterialApp(
     theme: ThemeData(primaryColor: Colors.brown),
     home: const HomePage(),
+    initialRoute: '/main',
+    routes: {
+      '/main': (context) => const HomePage(),
+      '/cart': (contex) => const Cart(),
+    },
   ));
 }
 
+var _selectedIndex = 0;
 String imageUrl =
     'https://media.istockphoto.com/photos/mexican-quesadillas-picture-id1006720898';
 
@@ -22,6 +29,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.brown,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.food_bank,
+                size: 50,
+              ),
+              backgroundColor: Colors.amber,
+              label: 'Товары'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.shopping_cart,
+                size: 50,
+              ),
+              backgroundColor: Colors.amber,
+              label: 'Корзина'),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: ((int index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        }),
+      ),
       backgroundColor: Colors.brown.shade500,
       body: Stack(
         children: [
@@ -51,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(children: [
+                            Row(children: const [
                               Icon(
                                 Icons.fastfood_outlined,
                                 size: 60,
@@ -71,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                             Container(
                               width: 330,
                               height: 73,
-                              child: Text(
+                              child: const Text(
                                 'ул. Академика Трубилина, 56  г.Краснодар',
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.white),
@@ -95,11 +127,11 @@ class _HomePageState extends State<HomePage> {
 
 Widget gridFood() {
   return SliverGrid(
-    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 1,
       mainAxisSpacing: 8,
       crossAxisSpacing: 8,
-      mainAxisExtent: 220,
+      mainAxisExtent: 260,
     ),
     delegate: SliverChildListDelegate([
       Card(
