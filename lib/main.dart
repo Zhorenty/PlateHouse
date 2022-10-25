@@ -28,10 +28,11 @@ class _HomePageState extends State<HomePage> {
           CustomScrollView(
             slivers: [
               SliverAppBar(
+                floating: true,
                 expandedHeight: 540,
-                backgroundColor: Colors.brown,
+                backgroundColor: Colors.brown.withOpacity(0),
                 flexibleSpace: FlexibleSpaceBar(
-                  collapseMode: CollapseMode.pin,
+                  collapseMode: CollapseMode.parallax,
                   background: Container(
                     decoration: BoxDecoration(
                         image: DecorationImage(
@@ -50,18 +51,28 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Plate House',
-                              style: TextStyle(
-                                  fontSize: 40,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                            Row(children: [
+                              Icon(
+                                Icons.fastfood_outlined,
+                                size: 60,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Plate House',
+                                style: TextStyle(
+                                    fontSize: 45,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ]),
                             Container(
                               width: 350,
                               height: 73,
                               child: Text(
-                                '\n ул. Академика Трубилина, 56  г.Краснодар',
+                                'ул. Академика Трубилина, 56  г.Краснодар',
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.white),
                               ),
@@ -73,31 +84,60 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              gridaFood()
             ],
           ),
-          SizedBox(
-            height: 40,
-            child: gridFood(),
-          )
         ],
       ),
     );
   }
 }
 
-Widget gridFood() {
-  return GridView.builder(
-    padding: const EdgeInsets.all(16),
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+Widget gridaFood() {
+  return SliverGrid(
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
       mainAxisSpacing: 8,
       crossAxisSpacing: 8,
-      mainAxisExtent: 235,
+      mainAxisExtent: 220,
     ),
-    itemCount: dummyFoods.length,
-    itemBuilder: (context, index) {
-      Food food = dummyFoods[index];
-      return GestureDetector();
-    },
+    delegate: SliverChildListDelegate([
+      Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+          child: const ListTile()),
+      Container(
+        color: Colors.amber,
+      ),
+      Container(
+        color: Colors.amber,
+      ),
+      Container(
+        color: Colors.amber,
+      ),
+      Container(
+        color: Colors.amber,
+      ),
+      Container(
+        color: Colors.amber,
+      ),
+    ]),
   );
 }
+
+// Widget gridFood() {
+//   return GridView.builder(
+//     padding: const EdgeInsets.all(16),
+//     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//       crossAxisCount: 2,
+//       mainAxisSpacing: 8,
+//       crossAxisSpacing: 8,
+//       mainAxisExtent: 235,
+//     ),
+//     itemCount: dummyFoods.length,
+//     itemBuilder: (context, index) {
+//       Food food = dummyFoods[index];
+//       return GestureDetector();
+//     },
+//   );
+// }
