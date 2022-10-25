@@ -75,6 +75,10 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
+          SizedBox(
+            height: 40,
+            child: gridFood(),
+          )
         ],
       ),
     );
@@ -82,7 +86,14 @@ class _HomePageState extends State<HomePage> {
 }
 
 Widget gridFood() {
-  return ListView.builder(
+  return GridView.builder(
+    padding: const EdgeInsets.all(16),
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      mainAxisSpacing: 8,
+      crossAxisSpacing: 8,
+      mainAxisExtent: 235,
+    ),
     itemCount: dummyFoods.length,
     itemBuilder: (context, index) {
       Food food = dummyFoods[index];
