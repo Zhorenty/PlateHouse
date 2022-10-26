@@ -14,6 +14,13 @@ class _CartState extends State<Cart> {
       home: Scaffold(
           appBar: AppBar(
         title: Text('корзина'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/main', ((route) => false));
+          },
+        ),
       )),
     );
   }
